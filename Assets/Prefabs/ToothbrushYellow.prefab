@@ -93,10 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5062261546577789870}
   - component: {fileID: 4740739491799426170}
-  - component: {fileID: 4740739491799426171}
   - component: {fileID: 5551553654388152587}
   m_Layer: 0
-  m_Name: FD_toothbrush3_AD
+  m_Name: ToothbrushYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,19 +132,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4740739491799426171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5551553654388152596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ea9bbb268874e5e84b0764695694e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Thrust: 80
 --- !u!65 &5551553654388152587
 BoxCollider:
   m_ObjectHideFlags: 0

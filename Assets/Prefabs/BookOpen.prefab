@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2837814164357478924}
   - component: {fileID: 2372070507465154026}
-  - component: {fileID: 2372070507465154025}
   - component: {fileID: 3182391678810529975}
   m_Layer: 0
-  m_Name: FD_openbook_AD
+  m_Name: BookOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,19 +49,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2372070507465154025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3182391678810529974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ea9bbb268874e5e84b0764695694e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Thrust: 80
 --- !u!65 &3182391678810529975
 BoxCollider:
   m_ObjectHideFlags: 0
