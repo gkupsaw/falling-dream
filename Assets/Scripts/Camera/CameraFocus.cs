@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
-public class CameraFocus : MonoBehaviour
+namespace FallingDream.Camera
 {
-    [Header("Focused Object")]
-    public GameObject FocusedObject;
-
-    void Start()
+    public class CameraFocus : MonoBehaviour
     {
-        gameObject.transform.LookAt(FocusedObject.transform);
-    }
+        [Header("Focused Object")]
+        public GameObject FocusedObject;
 
-    
-    void Update()
-    {
-        gameObject.transform.LookAt(FocusedObject.transform);
+        void Start()
+        {
+            gameObject.transform.LookAt(FocusedObject.transform);
+        }
+
+
+        void Update()
+        {
+            gameObject.transform.LookAt(FocusedObject.transform);
+        }
     }
 }
