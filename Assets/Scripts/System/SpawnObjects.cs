@@ -35,7 +35,7 @@ namespace FallingDream.System {
                 rb.AddForce(objectInstance.transform.up * thrust, ForceMode.Impulse);
                 rb.AddTorque(new Vector3(Random.Range(0, m_torque), Random.Range(0, m_torque), Random.Range(0, m_torque)));
 
-                Destroy(objectInstance, timeAlive);
+                // Destroy(objectInstance, timeAlive);
             }
         }
     }
