@@ -12,6 +12,7 @@ namespace FallingDream.System {
         public float m_speed = 10f;
         public float m_torque = 10f;
         public GameObject[] m_possibleObjects;
+        public GameObject m_player;
 
         // Start is called before the first frame update
         void Start()
@@ -22,10 +23,12 @@ namespace FallingDream.System {
         void Update()
         {
             if (Time.frameCount % (m_objsPerSec * 70) == 0) {
+                Vector3 playerOrigin = m_player.transform.position;
+                playerOrigin.y = 0;
                 GameObject obj = m_possibleObjects[Random.Range(0, m_possibleObjects.Length)];
                 GameObject objectInstance = Instantiate(
                     obj,
-                    new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)),
+                    playerOrigin + new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)),
                     Quaternion.identity
                 );
 

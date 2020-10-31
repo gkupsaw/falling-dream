@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c2c907ad01a41ad9ad32e6c21ce239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_radius: 15
+  m_radius: 5
   m_spawnY: -11
   m_maxY: 20
   m_objsPerSec: 1
@@ -1023,6 +1023,7 @@ MonoBehaviour:
   - {fileID: 6909261809980080379, guid: ccc95402bdb274669aae05a29b189916, type: 3}
   - {fileID: 5551553654388152596, guid: 9b7f4644e47e34a32ab162df909f395a, type: 3}
   - {fileID: 8126809300477718185, guid: 818a596b02ef246f9afcce610ab4a088, type: 3}
+  m_player: {fileID: 1385186582}
 --- !u!4 &2082181841
 Transform:
   m_ObjectHideFlags: 0
