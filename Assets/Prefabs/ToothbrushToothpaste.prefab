@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6100532166661855809}
   - component: {fileID: 5990852740044307885}
   - component: {fileID: 6909261809980080380}
+  - component: {fileID: 7925487822161488270}
   m_Layer: 0
   m_Name: ToothbrushToothpaste
   m_TagString: Untagged
@@ -142,8 +143,20 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6909261809980080379}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7925487822161488270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909261809980080379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6405b7e815984a69b9338e1dc0083f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
