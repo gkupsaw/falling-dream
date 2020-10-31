@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 namespace FallingDream.Player {
-    public class Health : MonoBehaviour
+    public class PlayerHealth : MonoBehaviour
     {
         public int health = 3;
         public Text healthTxt;
