@@ -23,12 +23,10 @@ namespace FallingDream.System {
         void Update()
         {
             if (Time.frameCount % (m_objsPerSec * 70) == 0) {
-                Vector3 playerOrigin = m_player.transform.position;
-                playerOrigin.y = 0;
                 GameObject obj = m_possibleObjects[Random.Range(0, m_possibleObjects.Length)];
                 GameObject objectInstance = Instantiate(
                     obj,
-                    playerOrigin + new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)),
+                    new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)),
                     Quaternion.identity
                 );
 
