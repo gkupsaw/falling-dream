@@ -20,10 +20,10 @@ namespace FallingDream.Player
         }
 
         [Header("Standard Settings")]
-        public float StandardSpeed;
-        public float StandardRadius;
-        public float MinRadius;
-        public float MaxRadius;
+        public float StandardSpeed = 0.002f;
+        public float StandardRadius = 10f;
+        public float MinRadius = 5f;
+        public float MaxRadius = 15f;
         public float CurrentCircularSpeed
         {
             get
@@ -40,8 +40,8 @@ namespace FallingDream.Player
         }
 
         [Header("Position Properties")]
-        public float CharRadian;
-        public float CharRadius;
+        public float CharRadian = 0;
+        public float CharRadius = 10;
 
         void Start()
         {
