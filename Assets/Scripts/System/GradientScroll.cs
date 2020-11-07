@@ -6,7 +6,7 @@ namespace FallingDream.System {
     public class GradientScroll : MonoBehaviour
     {
         public Color[] rgbaList;
-        public float secondsPerCycle = 10f;
+        public float secondsPerCycle = 60f;
         public Material mat;
         private Gradient grad;
 
@@ -53,8 +53,13 @@ namespace FallingDream.System {
         void EvalGradient()
         {
             float timeStep = Time.time % secondsPerCycle / secondsPerCycle;
-            mat.color = grad.Evaluate(timeStep);
-            RenderSettings.skybox = mat;
+            Color newColor = grad.Evaluate(timeStep);
+            // mat.color = newColor;
+            if (RenderSettings.skybox.HasProperty("_Tint"))
+                RenderSettings.skybox.SetColor("_Tint", newColor);
+            else if (RenderSettings.skybox.HasProperty("_SkyTint"))
+                RenderSettings.skybox.SetColor("_SkyTint", newColor);
+            // RenderSettings.skybox = mat;
             // foreach (Transform child in transform)
             // {
             //     child.GetComponent<Renderer>().material.color = grad.Evaluate(timeStep);
