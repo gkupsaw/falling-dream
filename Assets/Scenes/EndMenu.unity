@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3615868c7efb18648bd1e141c9386143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: MovementDemo
+  scene: MainMenu
 --- !u!114 &163870870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3bf654dfae95a54c8de53dd741e61e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d8da6f1f512ff2459ff7da6847f52c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
