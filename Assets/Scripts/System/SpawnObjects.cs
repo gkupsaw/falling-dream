@@ -5,18 +5,29 @@ using UnityEngine;
 namespace FallingDream.System {
     public class SpawnObjects : MonoBehaviour
     {
-        public float m_radius = 5f; // radius of area in x that objects can appear in
+        [Header("Spawn Location/Frequency")]
+        // public float m_radius = 5f; // radius of area in x that objects can appear in
         public float m_spawnY = 0f;
         public float m_maxY = 10f;
-        public int m_objsPerSec = 1; // ms
+        public int m_objsPerSec = 1;
+
+        [Header("Object Behavior")]
         public float m_speed = 10f;
         public float m_torque = 10f;
+
+        [Header("Related Objects")]
         public GameObject[] m_possibleObjects;
         public GameObject m_player;
+
+        private FallingDream.Player.SimplePlayerMovement _playerScript;
+        private float m_radius;
+
 
         // Start is called before the first frame update
         void Start()
         {
+            _playerScript = m_player.GetComponent<FallingDream.Player.SimplePlayerMovement>();
+            m_radius = _playerScript.MaxDisplacement;
         }
 
         // Update is called once per frame
