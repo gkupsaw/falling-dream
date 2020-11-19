@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7925487822161488270}
   m_Layer: 0
   m_Name: ToothbrushToothpaste
-  m_TagString: Untagged
+  m_TagString: ObjectDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

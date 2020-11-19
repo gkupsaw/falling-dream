@@ -95,8 +95,9 @@ namespace FallingDream.Player
                 IsMoving = false;
             }
 
-            Debug.Log(rotateX);
-            Debug.Log(deltaLeanX);
+            //Debug.Log(rotateX);
+            //Debug.Log(deltaLeanX);
+            
             if (deltaLeanX == 0 && rotateX != 0)
             {
                 // we need weird conditions bc 0 < rotateX < 360

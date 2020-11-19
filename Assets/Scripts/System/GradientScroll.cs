@@ -54,11 +54,16 @@ namespace FallingDream.System {
         {
             float timeStep = Time.time % secondsPerCycle / secondsPerCycle;
             Color newColor = grad.Evaluate(timeStep);
+            Color newColor2 = grad.Evaluate((timeStep + 0.2f) % 1.0f);
+
+            mat.SetColor("_ColorBot", newColor2);
+            mat.SetColor("_ColorTop", newColor);
+
             // mat.color = newColor;
-            if (RenderSettings.skybox.HasProperty("_Tint"))
-                RenderSettings.skybox.SetColor("_Tint", newColor);
-            else if (RenderSettings.skybox.HasProperty("_SkyTint"))
-                RenderSettings.skybox.SetColor("_SkyTint", newColor);
+            // if (RenderSettings.skybox.HasProperty("_Tint"))
+            //    RenderSettings.skybox.SetColor("_Tint", newColor);
+            // else if (RenderSettings.skybox.HasProperty("_SkyTint"))
+            //    RenderSettings.skybox.SetColor("_SkyTint", newColor);
             // RenderSettings.skybox = mat;
             // foreach (Transform child in transform)
             // {
