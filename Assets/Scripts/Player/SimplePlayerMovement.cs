@@ -95,30 +95,29 @@ namespace FallingDream.Player
                 IsMoving = false;
             }
 
-            //Debug.Log(rotateX);
-            //Debug.Log(deltaLeanX);
-            
-            if (deltaLeanX == 0 && rotateX != 0)
+            Debug.Log(rotateX);
+            Debug.Log(deltaLeanX);
+            if (deltaLeanX == 0f && rotateX != 0f)
             {
                 // we need weird conditions bc 0 < rotateX < 360
-                if (rotateX > 45)
+                if (rotateX > 45f)
                 {
-                    deltaLeanX = Mathf.Max(0, rotateX + LeanFactor);
+                    deltaLeanX = Mathf.Min(360f, rotateX + (LeanFactor / 100f));
                 } else
                 {
-                    deltaLeanX = Mathf.Min(0, rotateX - LeanFactor);
+                    deltaLeanX = Mathf.Max(0f, rotateX - (LeanFactor / 100f));
                 }
             }
 
-            if (deltaLeanZ == 0 && rotateZ != 0)
+            if (deltaLeanZ == 0f && rotateZ != 0f)
             {
                 // we need weird conditions bc 0 < rotateX < 360
-                if (rotateZ > 45)
+                if (rotateZ > 45f)
                 {
-                    deltaLeanZ = Mathf.Min(0, rotateZ + LeanFactor);
+                    deltaLeanZ = Mathf.Min(0f, rotateZ + (LeanFactor / 100f));
                 } else
                 {
-                    deltaLeanZ = Mathf.Min(0, rotateZ - LeanFactor);
+                    deltaLeanZ = Mathf.Min(0f, rotateZ - (LeanFactor / 100f));
                 }
             }
 
