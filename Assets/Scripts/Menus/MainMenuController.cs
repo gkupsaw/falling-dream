@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuController : MonoBehaviour
-{
+namespace FallingDream.Menus {
 
-    // maybe we actually don't need this script...
+    public class MainMenuController : MonoBehaviour
+    {
+
+        // maybe we actually don't need this script...
+
+    }
 
 }
