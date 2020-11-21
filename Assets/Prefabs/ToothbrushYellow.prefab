@@ -59,9 +59,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7209514650377959485, guid: ea587712bc8ff414ca262ad3fd18585f, type: 3}
-  - {fileID: 8554655104631171556, guid: ea587712bc8ff414ca262ad3fd18585f, type: 3}
-  - {fileID: -749338713933554755, guid: ea587712bc8ff414ca262ad3fd18585f, type: 3}
+  - {fileID: 2100000, guid: bf96b2648f203244398a3efe20f9d391, type: 2}
+  - {fileID: 2100000, guid: 315e2f9eb085bba419f43af2bfe31a83, type: 2}
+  - {fileID: 2100000, guid: 255fa0e4fb45302449710485595992d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -2508343973990961039}
   m_Layer: 0
   m_Name: ToothbrushYellow
-  m_TagString: Untagged
+  m_TagString: ObjectDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

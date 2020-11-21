@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3703132354099556519}
   m_Layer: 0
   m_Name: ToothbrushPink
-  m_TagString: Untagged
+  m_TagString: ObjectDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,10 +135,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: adc31b46d3cb04abe910b02b06f7c54e, type: 3}
-  - {fileID: 602932916229721472, guid: adc31b46d3cb04abe910b02b06f7c54e, type: 3}
-  - {fileID: -3947778285893291813, guid: adc31b46d3cb04abe910b02b06f7c54e, type: 3}
-  - {fileID: 8554655104631171556, guid: adc31b46d3cb04abe910b02b06f7c54e, type: 3}
+  - {fileID: 2100000, guid: b12103878a078e14397c32e121021432, type: 2}
+  - {fileID: 2100000, guid: db164d1df406d824e862eef91a498541, type: 2}
+  - {fileID: 2100000, guid: a048e49d544197948afe78eb7497ef6f, type: 2}
+  - {fileID: 2100000, guid: 3747a25b75a48684a951f43e948df9e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

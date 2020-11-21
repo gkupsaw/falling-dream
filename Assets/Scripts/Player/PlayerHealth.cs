@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 namespace FallingDream.Player {
     public class PlayerHealth : MonoBehaviour
@@ -14,6 +15,7 @@ namespace FallingDream.Player {
         public bool useImages;
 
         void Update() { // TEMP
+
             if (Input.GetKeyDown(KeyCode.U)) {
                 TakeDamage();
             }
@@ -40,6 +42,7 @@ namespace FallingDream.Player {
             }
             if (health == 0) {
                 Debug.Log("Gameover");
+                SceneManager.LoadScene("EndMenu");
             }
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6269819796079997255}
   m_Layer: 0
   m_Name: BookClosed
-  m_TagString: Untagged
+  m_TagString: ObjectDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,11 +135,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2400404728525148765, guid: 51ee576bba6514c83866f2a8ebf164fe, type: 3}
-  - {fileID: -2310514774154243031, guid: 51ee576bba6514c83866f2a8ebf164fe, type: 3}
-  - {fileID: -6633785481963203505, guid: 51ee576bba6514c83866f2a8ebf164fe, type: 3}
-  - {fileID: -2407533544632507476, guid: 51ee576bba6514c83866f2a8ebf164fe, type: 3}
-  - {fileID: 8554655104631171556, guid: 51ee576bba6514c83866f2a8ebf164fe, type: 3}
+  - {fileID: 2100000, guid: 327d496f6e4125542a0739d9f02f2df0, type: 2}
+  - {fileID: 2100000, guid: 15bc2b80dc2c09b408c49d040d61f508, type: 2}
+  - {fileID: 2100000, guid: b495011492e35c243b9d80cbcb8e914e, type: 2}
+  - {fileID: 2100000, guid: 5325c7e75e4ccaf42869d55b4da593c3, type: 2}
+  - {fileID: 2100000, guid: 5b67d539aa488c445b198f0671def6b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

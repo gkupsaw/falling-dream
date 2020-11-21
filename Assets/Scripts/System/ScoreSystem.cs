@@ -20,7 +20,9 @@ namespace FallingDream.System {
 
         public void IncrementScore() {
             score++;
+            PlayerPrefs.SetInt("score", score);
             updateScoreTxt();
+
         }
     }
 }

@@ -59,11 +59,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2927451510848349258, guid: 0e007b35603fb444fb7022d0adfa3160, type: 3}
-  - {fileID: -748918415832358673, guid: 0e007b35603fb444fb7022d0adfa3160, type: 3}
-  - {fileID: 5200753494579969130, guid: 0e007b35603fb444fb7022d0adfa3160, type: 3}
-  - {fileID: -749338713933554755, guid: 0e007b35603fb444fb7022d0adfa3160, type: 3}
-  - {fileID: 8554655104631171556, guid: 0e007b35603fb444fb7022d0adfa3160, type: 3}
+  - {fileID: 2100000, guid: 228d047bcb5149d4ba062e93a7913081, type: 2}
+  - {fileID: 2100000, guid: 962411b186dec1d46a323b293985e243, type: 2}
+  - {fileID: 2100000, guid: 5ac0373f9741e824eaf8cccde07902ce, type: 2}
+  - {fileID: 2100000, guid: ad175012c8af83d40a556174ea3a76b4, type: 2}
+  - {fileID: 2100000, guid: 6af58c8116123704b8262f9d4eeb460b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7925487822161488270}
   m_Layer: 0
   m_Name: ToothbrushToothpaste
-  m_TagString: Untagged
+  m_TagString: ObjectDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

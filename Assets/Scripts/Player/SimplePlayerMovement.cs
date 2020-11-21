@@ -9,19 +9,25 @@ namespace FallingDream.Player
     public class SimplePlayerMovement : MonoBehaviour
     {
         [Header("Standard Settings")]
-        public bool IsMoving;
         public float Speed = 0.05f;
         public float MaxDisplacement = 10f;
         public float LeanFactor = .1f;
-        public float MaxLeanDeg = 45;
+        public float MaxLeanDeg = 15f;
+        private float MaxLeanDegInv = 360f;
+        private float EPSILON = 1f;
 
         void Start()
         {
             PositionCalculate(0, 0);
+            MaxLeanDegInv = 360f - MaxLeanDeg;
         }
 
         void Update()
         {
+            bool isMovingX = false;
+            bool isMovingZ = false;
+            float SpeedNormed = Speed * Time.deltaTime;
+
             float deltaX = 0;
             float deltaZ = 0;
             float deltaLeanX = 0;
@@ -34,55 +40,59 @@ namespace FallingDream.Player
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
+                isMovingX = true;
+
                 if (posX < MaxDisplacement)
                 {
-                    IsMoving = true;
-                    deltaX = Speed;
+                    deltaX = SpeedNormed;
                 }
 
-                if (rotateZ < MaxLeanDeg)
+                if (rotateZ <= MaxLeanDeg + EPSILON || rotateZ >= MaxLeanDegInv)
                 {
-                    deltaLeanZ = LeanFactor;
+                    deltaLeanZ = GetLean(rotateZ, false);
                 }
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
+                isMovingX = true;
+
                 if (posX > -MaxDisplacement)
                 {
-                    IsMoving = true;
-                    deltaX = -Speed;
+                    deltaX = -SpeedNormed;
                 }
 
-                if (rotateZ > 360 - MaxLeanDeg)
+                if (rotateZ <= MaxLeanDeg || rotateZ >= MaxLeanDegInv - EPSILON)
                 {
-                    deltaLeanZ = -LeanFactor;
+                    deltaLeanZ = GetLean(rotateZ, true);
                 }
             }
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
+                isMovingZ = true;
+
                 if (posZ < MaxDisplacement)
                 {
-                    IsMoving = true;
-                    deltaZ = Speed;
+                    deltaZ = SpeedNormed;
                 }
 
-                if (rotateX < MaxLeanDeg)
+                if (rotateX <= MaxLeanDeg || rotateX >= MaxLeanDegInv - EPSILON)
                 {
-                    deltaLeanX = LeanFactor;
+                    deltaLeanX = GetLean(rotateX, true);
                 }
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
+                isMovingZ = true;
+
                 if (posZ > -MaxDisplacement)
                 {
-                    IsMoving = true;
-                    deltaZ = -Speed;
+                    deltaZ = -SpeedNormed;
                 }
 
-                if (rotateX > 360 - MaxLeanDeg)
+                if (rotateX <= MaxLeanDeg + EPSILON || rotateX >= MaxLeanDegInv)
                 {
-                    deltaLeanX = -LeanFactor;
+                    deltaLeanX = GetLean(rotateX, false);
                 }
             }
 
@@ -90,59 +100,19 @@ namespace FallingDream.Player
             if (deltaX != 0 || deltaZ != 0)
             {
                 gameObject.transform.position = PositionCalculate(deltaX, deltaZ);
-            } else
-            {
-                IsMoving = false;
             }
 
-            // if (rotateX != 0f)
-            // {
-            //     // we need weird conditions bc 0 < rotateX < 360
-            //     if (rotateX > 45f)
-            //     {
-            //         // deltaLeanX = Mathf.Min(360f, rotateX + (LeanFactor));
-            //         deltaLeanX += LeanFactor;
-            //     } else
-            //     {
-            //         // deltaLeanX = Mathf.Max(0f, rotateX - (LeanFactor));
-            //         deltaLeanX += -LeanFactor;
-            //     }
-            // }
-
-            // if (rotateZ != 0f)
-            // {
-            //     // we need weird conditions bc 0 < rotateX < 360
-            //     if (rotateZ > 45f)
-            //     {
-            //         if (deltaLeanZ + LeanFactor + rotateZ > 360)
-            //         {
-            //             deltaZ = -rotateZ;
-            //         } else
-            //         {
-            //             deltaLeanZ += LeanFactor;
-            //         }
-            //     } else
-            //     {
-            //         if (deltaLeanZ - LeanFactor + rotateZ < 0)
-            //         {
-            //             deltaZ = rotateZ;
-            //         } else
-            //         {
-            //             deltaLeanZ -= LeanFactor;
-            //         }
-            //     }
-            // }
-
-            deltaLeanX = GetDeltaLean(rotateX, deltaLeanX);
-            deltaLeanZ = GetDeltaLean(rotateZ, deltaLeanZ);
-
-            Debug.Log(rotateX);
-            Debug.Log(rotateZ);
-
-            if (deltaLeanX != 0 || deltaLeanZ != 0)
+            if (deltaLeanX == 0 && !isMovingZ)
             {
-                LeanPlayer(deltaLeanX, 0, deltaLeanZ);
+                deltaLeanX = GetAutoLean(rotateX);
             }
+
+            if (deltaLeanZ == 0 && !isMovingX)
+            {
+                deltaLeanZ = GetAutoLean(rotateZ);
+            }
+
+            LeanPlayer(deltaLeanX, 0, deltaLeanZ);
         }
 
         private Vector3 PositionCalculate(float deltaX, float deltaZ)
@@ -152,72 +122,81 @@ namespace FallingDream.Player
 
         private void LeanPlayer(float x, float y, float z)
         {
-            // float adjustedX = (x > 0f && x < MaxLeanDeg) || (x > 360f - MaxLeanDeg && x < 360f)
-            gameObject.transform.Rotate(x, y, z, Space.Self);
+            Vector3 rot = gameObject.transform.rotation.eulerAngles;
+            x = AdjustDeltaLean(x, rot.x);
+            y = AdjustDeltaLean(y, rot.y);
+            z = AdjustDeltaLean(z, rot.z);
+            gameObject.transform.Rotate(x, y, z);
         }
 
-        // private float GetDeltaLean()
-        // {
-        //     float rotateX = gameObject.transform.rotation.eulerAngles.x;
-        //     float rotateZ = gameObject.transform.rotation.eulerAngles.z;
-        //     float deltaLeanZ = 0;
-        //     float deltaLeanX = 0;
-
-        //     if (Input.GetKey(KeyCode.RightArrow) && (rotateZ < MaxLeanDeg))
-        //     {
-        //         deltaLeanZ = LeanFactor;
-        //     }
-        //     else if (Input.GetKey(KeyCode.LeftArrow) && (rotateZ > 360 - MaxLeanDeg))
-        //     {
-        //         deltaLeanZ = -LeanFactor;
-        //     }
-
-        //     if (Input.GetKey(KeyCode.UpArrow) && (rotateX < MaxLeanDeg))
-        //     {
-        //         deltaLeanX = LeanFactor;
-        //     }
-        //     else if (Input.GetKey(KeyCode.DownArrow) && (rotateX > 360 - MaxLeanDeg))
-        //     {
-        //         deltaLeanX = -LeanFactor;
-        //     }
-
-
-        //     return GetAutoLean(deltaLeanX);
-        // }
-
-        private float GetAutoLean(float currRot, float currDeltaLean)
+        private float AdjustDeltaLean(float deg, float currRot)
         {
-            // do stuff iff player not moved and rot != 0
-            float deltaLean = currDeltaLean;
+            float next = currRot + deg;
+            if (next <= MaxLeanDegInv && next >= MaxLeanDeg)
+            {
+                if (next - MaxLeanDeg > MaxLeanDegInv - next)
+                {
+                    deg = currRot - MaxLeanDegInv;
+                }
+                else
+                {
+                    deg = MaxLeanDeg - currRot;
+                }
+            }
 
-            if (currDeltaLean == 0 && currRot != 0)
+            return deg;
+        }
+
+        private float GetAutoLean(float currRot)
+        {
+            float deltaLean = 0;
+
+            if (currRot != 0)
             {
                 // we need weird conditions bc 0deg < rotateX < 360deg
-                if (currRot > 45f)
+                if (currRot > MaxLeanDegInv - EPSILON)
                 {
-                    // we add lean in the positive direction
-                    if (currDeltaLean + LeanFactor + currRot > 360f)
-                    {
-                        // if it overshoots, then make the rotation 0
-                        deltaLean = -currRot;
-                    } else
-                    {
-                        deltaLean += LeanFactor;
-                    }
-                } else
+                    deltaLean = GetLean(currRot, true);
+                }
+                else if (currRot < MaxLeanDeg + EPSILON)
                 {
-                    // we add lean in the negative direction
-                    if (currDeltaLean - LeanFactor + currRot < 0f)
-                    {
-                        deltaLean = -currRot;
-                    } else
-                    {
-                        deltaLean -= LeanFactor;
-                    }
+                    deltaLean = GetLean(currRot, false);
                 }
             }
 
             return deltaLean;
+        }
+
+        private float GetLean(float currRot, bool isPositive)
+        {
+            float lean = 0;
+
+            if (isPositive)
+            {
+                if (currRot + LeanFactor > 360f)
+                {
+                    // if it overshoots, then make the rotation 0
+                    lean = 360f - currRot;
+                }
+                else
+                {
+                    lean = LeanFactor;
+                }
+            }
+            else
+            {
+                if (currRot != 0 && currRot - LeanFactor < 0f)
+                {
+                    // if it overshoots, then make the rotation 0
+                    lean = -currRot;
+                }
+                else
+                {
+                    lean = -LeanFactor;
+                }
+            }
+
+            return lean;
         }
     }
 }
