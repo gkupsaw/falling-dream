@@ -10,6 +10,11 @@ namespace FallingDream.System {
         public Material mat;
         private Gradient grad;
 
+        public float colorStartOffset;
+        public float colorGradientOffset;
+
+        public float time = 0;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -24,6 +29,8 @@ namespace FallingDream.System {
 
         void GenGradient()
         {
+            time = 0.0f;
+
             if (rgbaList.Length > 0)
             {
                 int numColors = rgbaList.Length;
@@ -52,9 +59,10 @@ namespace FallingDream.System {
 
         void EvalGradient()
         {
-            float timeStep = Time.time % secondsPerCycle / secondsPerCycle;
-            Color newColor = grad.Evaluate(timeStep);
-            Color newColor2 = grad.Evaluate((timeStep + 0.2f) % 1.0f);
+            time += Time.deltaTime;
+            float timeStep = time % secondsPerCycle / secondsPerCycle;
+            Color newColor = grad.Evaluate(timeStep + colorStartOffset);
+            Color newColor2 = grad.Evaluate((timeStep + colorStartOffset + colorGradientOffset) % 1.0f);
 
             mat.SetColor("_ColorBot", newColor2);
             mat.SetColor("_ColorTop", newColor);

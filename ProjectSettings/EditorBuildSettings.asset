@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MovementDemo.unity
     guid: d5033e367c4a54f8ca4728d510c3f662
+  - enabled: 1
+    path: Assets/Scenes/EndMenu.unity
+    guid: 9fce741036af59746818a8bc74d8ab2f
   m_configObjects: {}

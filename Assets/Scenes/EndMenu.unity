@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3615868c7efb18648bd1e141c9386143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: MainMenu
+  scene: MovementDemo
 --- !u!114 &163870870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,8 +941,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.4, y: -111}
-  m_SizeDelta: {x: 156.7095, y: 92.98378}
+  m_AnchoredPosition: {x: 2.0361, y: -105.4}
+  m_SizeDelta: {x: 163.58173, y: 64.636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260063624
 MonoBehaviour:
@@ -1033,7 +1033,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 5966171616149835250, guid: b24dbce48e58be440ac08ca7a1816232, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4

@@ -23,6 +23,8 @@ namespace FallingDream.System {
         private float m_radius;
 
 
+        private float timeSinceSpawn = 0.0f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -33,11 +35,13 @@ namespace FallingDream.System {
         // Update is called once per frame
         void Update()
         {
-            if (Time.frameCount % (m_objsPerSec * 70) == 0) {
+            timeSinceSpawn += Time.deltaTime;
+            if (timeSinceSpawn >= 1.0 / m_objsPerSec) {
+                timeSinceSpawn = timeSinceSpawn % (1.0f / m_objsPerSec);
                 GameObject obj = m_possibleObjects[Random.Range(0, m_possibleObjects.Length)];
                 GameObject objectInstance = Instantiate(
                     obj,
-                    new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)),
+                    new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)), // object position
                     Quaternion.identity
                 );
 
