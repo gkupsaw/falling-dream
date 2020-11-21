@@ -2356,6 +2356,7 @@ MonoBehaviour:
   - {fileID: 8126809300477718185, guid: 818a596b02ef246f9afcce610ab4a088, type: 3}
   m_player: {fileID: 1372202883}
   m_spawnSigma: 7
+  m_allowableOutOfBoundsRadius: 3
 --- !u!4 &2082181841
 Transform:
   m_ObjectHideFlags: 0

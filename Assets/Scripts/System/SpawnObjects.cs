@@ -20,9 +20,10 @@ namespace FallingDream.System {
         public GameObject[] m_possibleObjects;
         public GameObject m_player;
 
-        [Header("Spawn Distribution")]
+        [Header("Spawn Distribution and Allowable Area")]
         [Range(0.1f, 10.0f)]
         public float m_spawnSigma;
+        public float m_allowableOutOfBoundsRadius;
 
         private FallingDream.Player.SimplePlayerMovement _playerScript;
         private float m_radius;
@@ -50,15 +51,16 @@ namespace FallingDream.System {
                 GameObject obj = m_possibleObjects[Random.Range(0, m_possibleObjects.Length)];
                 GameObject objectInstance;
                 if (objCount % 2 == 0) {
-                    Vector2 objPos = Sample2DGaussian(new Vector2(_playerScript.transform.position.x, _playerScript.transform.position.z), m_spawnSigma, m_radius);
+                    Vector2 objPos = Sample2DGaussian(new Vector2(_playerScript.transform.position.x, _playerScript.transform.position.z), m_spawnSigma, m_radius, m_allowableOutOfBoundsRadius);
                     objectInstance = Instantiate(
                         obj,
                         new Vector3(objPos.x, m_spawnY, objPos.y), // object position
                         Quaternion.identity);
                 } else {
+                    float rad = m_radius + m_allowableOutOfBoundsRadius;
                     objectInstance = Instantiate(
                         obj,
-                        new Vector3(Random.Range(-m_radius, m_radius), m_spawnY, Random.Range(-m_radius, m_radius)), // object position
+                        new Vector3(Random.Range(-rad, rad), m_spawnY, Random.Range(-rad, rad)), // object position
                         Quaternion.identity
                 );
                 }
@@ -73,16 +75,12 @@ namespace FallingDream.System {
             }
         }
 
-        static Vector2 Sample2DGaussian(Vector2 mean, float sigma, float radiusBound) {
+        static Vector2 Sample2DGaussian(Vector2 mean, float sigma, float radiusBound, float outOfBoundsRad) {
             int i = 0;
             while (i < 100) {
                 i++;
                 float u1 = Random.Range(0.0f, 1.0f);
                 float u2 = Random.Range(0.0f, 1.0f);
-
-                Debug.Log(i);
-                Debug.Log(u1);
-                Debug.Log(u2);
 
                 float R = Mathf.Sqrt(-2 * Mathf.Log(u1));
                 float th = 2 * Mathf.PI * u2;
@@ -90,13 +88,13 @@ namespace FallingDream.System {
                 float x = R * Mathf.Cos(th);
                 float y = R * Mathf.Sin(th);
 
-                Debug.Log(x);
-                Debug.Log(y);
+                Vector2 toRet = new Vector2(x, y) * sigma + mean;
 
-                if (Mathf.Abs(x) > radiusBound || Mathf.Abs(y) > radiusBound) {
+                if (Mathf.Abs(toRet.x) > radiusBound + outOfBoundsRad || Mathf.Abs(toRet.y) > radiusBound + outOfBoundsRad) {
+                    Debug.Log("Generated invalid point, retrying");
                     continue;
                 }
-                return new Vector2(x, y) * sigma + mean;
+                return toRet;
 
             }
             return new Vector2();
