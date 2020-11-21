@@ -14,7 +14,6 @@ namespace FallingDream.Player
         public float LeanFactor = .1f;
         public float MaxLeanDeg = 15f;
         private float MaxLeanDegInv = 360f;
-        private float EPSILON = 1f;
 
         void Start()
         {
@@ -47,7 +46,7 @@ namespace FallingDream.Player
                     deltaX = SpeedNormed;
                 }
 
-                if (rotateZ <= MaxLeanDeg + EPSILON || rotateZ >= MaxLeanDegInv)
+                if (rotateZ <= MaxLeanDeg || rotateZ >= MaxLeanDegInv)
                 {
                     deltaLeanZ = GetLean(rotateZ, false);
                 }
@@ -61,7 +60,7 @@ namespace FallingDream.Player
                     deltaX = -SpeedNormed;
                 }
 
-                if (rotateZ <= MaxLeanDeg || rotateZ >= MaxLeanDegInv - EPSILON)
+                if (rotateZ <= MaxLeanDeg || rotateZ >= MaxLeanDegInv)
                 {
                     deltaLeanZ = GetLean(rotateZ, true);
                 }
@@ -76,7 +75,7 @@ namespace FallingDream.Player
                     deltaZ = SpeedNormed;
                 }
 
-                if (rotateX <= MaxLeanDeg || rotateX >= MaxLeanDegInv - EPSILON)
+                if (rotateX <= MaxLeanDeg || rotateX >= MaxLeanDegInv)
                 {
                     deltaLeanX = GetLean(rotateX, true);
                 }
@@ -90,7 +89,7 @@ namespace FallingDream.Player
                     deltaZ = -SpeedNormed;
                 }
 
-                if (rotateX <= MaxLeanDeg + EPSILON || rotateX >= MaxLeanDegInv)
+                if (rotateX <= MaxLeanDeg || rotateX >= MaxLeanDegInv)
                 {
                     deltaLeanX = GetLean(rotateX, false);
                 }
@@ -132,7 +131,7 @@ namespace FallingDream.Player
         private float AdjustDeltaLean(float deg, float currRot)
         {
             float next = currRot + deg;
-            if (next <= MaxLeanDegInv && next >= MaxLeanDeg)
+            if (next < MaxLeanDegInv && next > MaxLeanDeg)
             {
                 if (next - MaxLeanDeg > MaxLeanDegInv - next)
                 {
@@ -153,12 +152,11 @@ namespace FallingDream.Player
 
             if (currRot != 0)
             {
-                // we need weird conditions bc 0deg < rotateX < 360deg
-                if (currRot > MaxLeanDegInv - EPSILON)
+                if (currRot >= MaxLeanDegInv)
                 {
                     deltaLean = GetLean(currRot, true);
                 }
-                else if (currRot < MaxLeanDeg + EPSILON)
+                else if (currRot <= MaxLeanDeg)
                 {
                     deltaLean = GetLean(currRot, false);
                 }
@@ -173,7 +171,7 @@ namespace FallingDream.Player
 
             if (isPositive)
             {
-                if (currRot + LeanFactor > 360f)
+                if (currRot + LeanFactor >= 360f)
                 {
                     // if it overshoots, then make the rotation 0
                     lean = 360f - currRot;
@@ -185,7 +183,7 @@ namespace FallingDream.Player
             }
             else
             {
-                if (currRot != 0 && currRot - LeanFactor < 0f)
+                if (currRot != 0 && currRot - LeanFactor <= 0f)
                 {
                     // if it overshoots, then make the rotation 0
                     lean = -currRot;
