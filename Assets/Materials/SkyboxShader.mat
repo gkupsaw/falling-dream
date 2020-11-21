@@ -81,8 +81,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorBot: {r: 0.3381352, g: 0.64158434, b: 0.7369083, a: 0.01859543}
-    - _ColorTop: {r: 0.92156863, g: 0.8, b: 0.7137255, a: 1}
+    - _ColorBot: {r: 0.9304778, g: 0.7732725, b: 0.65692955, a: 1}
+    - _ColorTop: {r: 0.6503587, g: 0.7263602, b: 0.7245021, a: 0.5437924}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}

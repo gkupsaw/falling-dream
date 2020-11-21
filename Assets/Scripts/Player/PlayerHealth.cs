@@ -14,6 +14,8 @@ namespace FallingDream.Player {
         public Sprite healthLostSprite;
         public bool useImages;
 
+        public FallingDream.System.DeathSequenceController deathSequenceController;
+
         void Update() { // TEMP
 
             if (Input.GetKeyDown(KeyCode.U)) {
@@ -42,7 +44,7 @@ namespace FallingDream.Player {
             }
             if (health == 0) {
                 Debug.Log("Gameover");
-                SceneManager.LoadScene("EndMenu");
+                deathSequenceController.TriggerDeathSequence();
             }
         }
     }

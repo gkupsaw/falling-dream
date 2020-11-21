@@ -61,7 +61,7 @@ namespace FallingDream.System {
         {
             time += Time.deltaTime;
             float timeStep = time % secondsPerCycle / secondsPerCycle;
-            Color newColor = grad.Evaluate(timeStep + colorStartOffset);
+            Color newColor = grad.Evaluate((timeStep + colorStartOffset) % 1.0f);
             Color newColor2 = grad.Evaluate((timeStep + colorStartOffset + colorGradientOffset) % 1.0f);
 
             mat.SetColor("_ColorBot", newColor2);
