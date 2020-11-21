@@ -22,6 +22,8 @@ namespace FallingDream.Player
 
         void Update()
         {
+            float SpeedNormed = Speed * Time.deltaTime;
+
             float deltaX = 0;
             float deltaZ = 0;
             float deltaLeanX = 0;
@@ -37,7 +39,7 @@ namespace FallingDream.Player
                 if (posX < MaxDisplacement)
                 {
                     IsMoving = true;
-                    deltaX = Speed;
+                    deltaX = SpeedNormed;
                 }
 
                 if (rotateZ < MaxLeanDeg)
@@ -50,7 +52,7 @@ namespace FallingDream.Player
                 if (posX > -MaxDisplacement)
                 {
                     IsMoving = true;
-                    deltaX = -Speed;
+                    deltaX = -SpeedNormed;
                 }
 
                 if (rotateZ > 360 - MaxLeanDeg)
@@ -64,7 +66,7 @@ namespace FallingDream.Player
                 if (posZ < MaxDisplacement)
                 {
                     IsMoving = true;
-                    deltaZ = Speed;
+                    deltaZ = SpeedNormed;
                 }
 
                 if (rotateX < MaxLeanDeg)
@@ -77,7 +79,7 @@ namespace FallingDream.Player
                 if (posZ > -MaxDisplacement)
                 {
                     IsMoving = true;
-                    deltaZ = -Speed;
+                    deltaZ = -SpeedNormed;
                 }
 
                 if (rotateX > 360 - MaxLeanDeg)

@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuButton : MonoBehaviour
-{
+namespace FallingDream.Menus {
 
-    public string scene;
+    public class MenuButton : MonoBehaviour
+    {
 
-    public void TransitionToScene() {
-        SceneManager.LoadScene(scene);
+        public string scene;
+
+        public void TransitionToScene() {
+            SceneManager.LoadScene(scene);
+        }
+
+
     }
-
-
 }

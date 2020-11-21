@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 namespace FallingDream.Player {
     public class PlayerHealth : MonoBehaviour
@@ -13,7 +14,10 @@ namespace FallingDream.Player {
         public Sprite healthLostSprite;
         public bool useImages;
 
+        public FallingDream.System.DeathSequenceController deathSequenceController;
+
         void Update() { // TEMP
+
             if (Input.GetKeyDown(KeyCode.U)) {
                 TakeDamage();
             }
@@ -40,6 +44,7 @@ namespace FallingDream.Player {
             }
             if (health == 0) {
                 Debug.Log("Gameover");
+                deathSequenceController.TriggerDeathSequence();
             }
         }
     }

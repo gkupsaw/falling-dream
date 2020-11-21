@@ -10,6 +10,11 @@ namespace FallingDream.System {
         public Material mat;
         private Gradient grad;
 
+        public float colorStartOffset;
+        public float colorGradientOffset;
+
+        public float time = 0;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -24,6 +29,8 @@ namespace FallingDream.System {
 
         void GenGradient()
         {
+            time = 0.0f;
+
             if (rgbaList.Length > 0)
             {
                 int numColors = rgbaList.Length;
@@ -52,13 +59,19 @@ namespace FallingDream.System {
 
         void EvalGradient()
         {
-            float timeStep = Time.time % secondsPerCycle / secondsPerCycle;
-            Color newColor = grad.Evaluate(timeStep);
+            time += Time.deltaTime;
+            float timeStep = time % secondsPerCycle / secondsPerCycle;
+            Color newColor = grad.Evaluate((timeStep + colorStartOffset) % 1.0f);
+            Color newColor2 = grad.Evaluate((timeStep + colorStartOffset + colorGradientOffset) % 1.0f);
+
+            mat.SetColor("_ColorBot", newColor2);
+            mat.SetColor("_ColorTop", newColor);
+
             // mat.color = newColor;
-            if (RenderSettings.skybox.HasProperty("_Tint"))
-                RenderSettings.skybox.SetColor("_Tint", newColor);
-            else if (RenderSettings.skybox.HasProperty("_SkyTint"))
-                RenderSettings.skybox.SetColor("_SkyTint", newColor);
+            // if (RenderSettings.skybox.HasProperty("_Tint"))
+            //    RenderSettings.skybox.SetColor("_Tint", newColor);
+            // else if (RenderSettings.skybox.HasProperty("_SkyTint"))
+            //    RenderSettings.skybox.SetColor("_SkyTint", newColor);
             // RenderSettings.skybox = mat;
             // foreach (Transform child in transform)
             // {

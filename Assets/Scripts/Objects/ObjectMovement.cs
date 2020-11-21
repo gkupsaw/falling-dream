@@ -9,6 +9,7 @@ namespace FallingDream.Object {
         public AudioClip hitSound;
 
         private void OnTriggerEnter(Collider collision) {
+            Debug.Log("Collision Ocurred!");
             GameObject obj = collision.gameObject;
             switch (obj.tag)
             {
@@ -17,9 +18,10 @@ namespace FallingDream.Object {
                     Destroy(gameObject);
                     break;
                 case "Player":
+                    Debug.Log("Collided with player!");
                     obj.GetComponent<FallingDream.Player.PlayerHealth>().TakeDamage();
                     obj.GetComponent<FallingDream.Player.PlayObjectHit>().Play(hitSound);
-                    Destroy(gameObject);
+                    Destroy(this.gameObject);
                     break;
                 default:
                     break;
