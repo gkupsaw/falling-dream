@@ -3,7 +3,17 @@ guid: d8828c715eeb648189fe35fb4268b423
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: initialShadingGroup
+    second: {fileID: 2100000, guid: 4927430e5f5297146b4304236d346ddf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sheepbodymockup_lambert2SG
+    second: {fileID: 2100000, guid: 1c3aea8266a69244a841f985cb4f6493, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

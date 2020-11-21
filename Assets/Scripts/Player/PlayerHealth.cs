@@ -15,6 +15,7 @@ namespace FallingDream.Player {
         public bool useImages;
 
         void Update() { // TEMP
+
             if (Input.GetKeyDown(KeyCode.U)) {
                 TakeDamage();
             }

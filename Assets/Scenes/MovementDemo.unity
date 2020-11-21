@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spawnY: -30
   m_maxY: 20
-  m_objsPerSec: 2
+  m_objsPerSec: 4
   m_speed: 15
   m_torque: 50
   m_possibleObjects:
@@ -1846,6 +1846,7 @@ MonoBehaviour:
   - {fileID: 5551553654388152596, guid: 9b7f4644e47e34a32ab162df909f395a, type: 3}
   - {fileID: 8126809300477718185, guid: 818a596b02ef246f9afcce610ab4a088, type: 3}
   m_player: {fileID: 1372202883}
+  m_spawnSigma: 4
 --- !u!4 &2082181841
 Transform:
   m_ObjectHideFlags: 0
