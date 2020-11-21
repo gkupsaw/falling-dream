@@ -10,9 +10,11 @@ namespace FallingDream.Player {
     {
         public int health = 3;
         public Text healthTxt;
-        public Image[] healthImages; 
+        public Image[] healthImages;
         public Sprite healthLostSprite;
         public bool useImages;
+
+        public FallingDream.System.DeathSequenceController deathSequenceController;
 
         void Update() { // TEMP
 
@@ -42,7 +44,7 @@ namespace FallingDream.Player {
             }
             if (health == 0) {
                 Debug.Log("Gameover");
-                SceneManager.LoadScene("EndMenu");
+                deathSequenceController.TriggerDeathSequence();
             }
         }
     }
